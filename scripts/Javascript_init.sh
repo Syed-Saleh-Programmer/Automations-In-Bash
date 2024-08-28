@@ -1,66 +1,61 @@
-#!/bin/bash
+echo "Enter project name (without spaces): "
 
-# Function to display a loading bar
-show_loading_bar() {
-  local duration=$1
-  local current=0
-  local bar_length=40
+read name
 
-  while [ $current -le $duration ]; do
-    local filled_length=$((current * bar_length / duration))
-    local empty_length=$((bar_length - filled_length))
-    
-    local bar_filled=$(printf "%0.s#" $(seq 1 $filled_length))
-    local bar_empty=$(printf "%0.s-" $(seq 1 $empty_length))
-    
-    printf "\r[%s%s] %d%%" "$bar_filled" "$bar_empty" $((current * 100 / duration))
+echo "Creating project $name"
 
-    sleep 1
-    ((current++))
-  done
-  printf "\n"
-}
+mkdir $name
 
-# Prompt user for the project name
-echo "Enter the project name:"
-read project_name
+cd $name
 
-# Prompt user for Tailwind CSS installation
-echo "Do you want to install Tailwind CSS? (y/n):"
-read install_tailwind
+touch index.html style.css
 
-# Create a new React app with Vite
-echo "Creating a new React app using Vite..."
-npm create vite@latest "$project_name" -- --template react &
+echo '<!DOCTYPE html>' > index.html
+echo '<html lang="en">' >> index.html
+echo '<head>' >> index.html
+echo '    <meta charset="UTF-8">' >> index.html
+echo '    <meta name="viewport" content="width=device-width, initial-scale=1.0">' >> index.html
+echo "    <title> $name </title>" >> index.html
+echo '</head>' >> index.html
+echo '<body>' >> index.html
+echo '    <!-- Your content goes here -->' >> index.html
+echo "    <h1> Happy Hacking! $name . </h1>" >> index.html
+echo "    <p style='margin-top:30px; font-size:20px;'> For Webdevelopment, Scripts and Automations contact <a href='https://github.com/Syed-Saleh-Programmer/' style='fot-size:24px; font-weight:bold; background:black; color:white; padding:10px; border-radius:5px; text-decoration:none; cursor:pointer;'>Syed Muhammad Saleh</a>. </p>" >> index.html
+echo '</body>' >> index.html
+echo '</html>' >> index.html
 
-# Show loading bar while the app is being created (estimated duration 15 seconds)
-show_loading_bar 15
+printf '*{\n padding:0;\n margin:0;\n box-sizing:border-box;\n}' > style.css
 
-# Navigate into the project directory
-cd "$project_name" || exit
+code .
 
-# Install the necessary packages
-echo "Installing dependencies..."
-npm install &
 
-# Show loading bar while npm install is running (estimated duration 20 seconds)
-show_loading_bar 20
+# Get the current directory path
+current_dir=$(pwd)
 
-# Check if the user wants to install Tailwind CSS
-if [ "$install_tailwind" == "y" ]; then
-  echo "Installing Tailwind CSS..."
-  
-  # Install Tailwind CSS and its peer dependencies
-  npm install -D tailwindcss postcss autoprefixer &
+# Convert Unix-style path to Windows-style path
+windows_path=$(cygpath -w "$current_dir")
 
-  # Show loading bar while Tailwind CSS is being installed (estimated duration 10 seconds)
-  show_loading_bar 10
+# Add the file URL prefix
+file_url="file:///$windows_path"
 
-  # Initialize Tailwind CSS configuration files
-  npx tailwindcss init -p
+# Replace backslashes with forward slashes
+file_url=$(echo "$file_url" | sed 's/\\/\//g')
 
-  # Inform the user about updating the Tailwind config
-  echo "Tailwind CSS has been installed. Remember to configure 'tailwind.config.js' and your CSS files."
-fi
+# Open the file in Chrome
+start chrome "$file_url/index.html"
 
-echo "Setup complete! Your React app is ready."
+
+echo "Project setup successfully."
+
+
+
+
+
+
+
+
+
+
+
+
+
