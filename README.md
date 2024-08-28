@@ -4,8 +4,8 @@ This repo is all about creating daily routine automations using `bash` scripting
 
 Here is the lists of Automations Included (Continuasly adding more Scripts):
 
-- [___Automate the Initialization of a React App___ ]()
-- [___Automate the Initialization of Javascript App___ ]()
+- [___Automate the Initialization of a React App___ ](https://github.com/Syed-Saleh-Programmer/Automations-In-Bash/blob/main/scripts/Javascript_init.sh)
+- [___Automate the Initialization of Javascript App___ ](https://github.com/Syed-Saleh-Programmer/Automations-In-Bash/blob/main/scripts/React_init.sh)
 
 
 
