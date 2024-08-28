@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Enter project name (without spaces): "
 
 read name
