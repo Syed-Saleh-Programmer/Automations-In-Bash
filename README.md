@@ -2,7 +2,7 @@
 
 This repo is all about creating daily routine automations using `bash` scripting language.
 
-Here is the lists of Automations Included (Continuasly adding):
+Here is the lists of Automations Included (Continuasly adding more Scripts):
 
 - [___Automate the Initialization of a React App___ ]()
 - [___Automate the Initialization of Javascript App___ ]()
